@@ -1,4 +1,4 @@
-# How it looks  
+# How it looks like  
 ![alt tag](https://i.imgur.com/can49f7.png "example")
 
 # Requirements
