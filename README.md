@@ -3,8 +3,8 @@
 
 # Requirements
 - Python3
+- Chrome / chromedriver  
 - selenium  
-- Chrome / chromedriver
 - pypresence
 
 # Setup before running
