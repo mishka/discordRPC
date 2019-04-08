@@ -23,7 +23,7 @@ while True:
         driver.execute_script(js)
         logdriver = driver.get_log('browser')
         RPC.update(large_image = 'youtube', large_text = 'Youtube', details = driver.title[:-10], state = logdriver[-1]['message'][20:-1])
-        sleep(1)
+        sleep(15)
     except Exception as e:
         print(str(e))
         sleep(10)
