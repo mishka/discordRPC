@@ -1,4 +1,4 @@
-from time import time
+from time import time, sleep
 from selenium import webdriver
 from pypresence import Presence
 from selenium.webdriver.chrome.options import Options
@@ -16,17 +16,20 @@ driver = webdriver.Chrome(chrome_options = chrome_options, desired_capabilities 
 song = []
 
 while(True):
-    song_name = driver.title[:-10]
-    song.append(song_name)
-    lenght = driver.execute_script("return document.getElementById('movie_player').getDuration()")
-    t = time()
-    RPC.update(large_image = 'youtube', large_text = 'Youtube', details = song_name, start = t, end = t + lenght)
-    #sleep(int(str(lenght).split('.')[0]))
+    try:
+        song_name = driver.title[:-10]
+        song.append(song_name)
+        lenght = driver.execute_script("return document.getElementById('movie_player').getDuration()")
+        t = time()
+        RPC.update(large_image = 'youtube', large_text = 'Youtube', details = song_name, start = t, end = t + lenght)
+        #sleep(int(str(lenght).split('.')[0]))
 
-    print('Current status: ' + song_name)
+        print('Current status: ' + song_name)
 
-    while song[0] == driver.title[:-10]:
-        continue
-    else:
-        del song[:]
-        pass
+        while song[0] == driver.title[:-10]:
+            continue
+        else:
+            del song[:]
+            pass
+    except:
+        sleep(10)
