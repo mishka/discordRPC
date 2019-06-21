@@ -18,8 +18,8 @@ song = []
 while(True):
     song_name = driver.title[:-10]
     song.append(song_name)
-    t = time()
     lenght = driver.execute_script("return document.getElementById('movie_player').getDuration()")
+    t = time()
     RPC.update(large_image = 'youtube', large_text = 'Youtube', details = song_name, start = t, end = t + lenght)
     #sleep(int(str(lenght).split('.')[0]))
 
