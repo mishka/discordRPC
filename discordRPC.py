@@ -1,4 +1,4 @@
-from time import sleep
+from time import time
 from selenium import webdriver
 from pypresence import Presence
 from selenium.webdriver.chrome.options import Options
@@ -13,18 +13,20 @@ dc = DesiredCapabilities.CHROME
 dc['loggingPrefs'] = { 'browser':'ALL' }
 chrome_options.add_experimental_option('debuggerAddress', '127.0.0.1:9222')
 driver = webdriver.Chrome(chrome_options = chrome_options, desired_capabilities = dc)
+song = []
 
-with open("./youtube.js", "r") as x:
-    js = x.read()
-    x.close()
+while(True):
+    song_name = driver.title[:-10]
+    song.append(song_name)
+    t = time()
+    lenght = driver.execute_script("return document.getElementById('movie_player').getDuration()")
+    RPC.update(large_image = 'youtube', large_text = 'Youtube', details = song_name, start = t, end = t + lenght)
+    #sleep(int(str(lenght).split('.')[0]))
 
-while True:
-    try:
-        driver.execute_script(js)
-        logdriver = driver.get_log('browser')
-        RPC.update(large_image = 'youtube', large_text = 'Youtube', details = driver.title[:-10], state = logdriver[-1]['message'][20:-1])
-        sleep(15)
-    except Exception as e:
-        print(str(e))
-        sleep(10)
+    print('Current status: ' + song_name)
+
+    while song[0] == driver.title[:-10]:
         continue
+    else:
+        del song[:]
+        pass
