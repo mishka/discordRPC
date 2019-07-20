@@ -9,10 +9,8 @@ RPC = Presence(client_id, pipe=0)
 RPC.connect() 
 
 chrome_options = Options()
-dc = DesiredCapabilities.CHROME
-dc['loggingPrefs'] = { 'browser':'ALL' }
 chrome_options.add_experimental_option('debuggerAddress', '127.0.0.1:9222')
-driver = webdriver.Chrome(chrome_options = chrome_options, desired_capabilities = dc)
+driver = webdriver.Chrome(chrome_options = chrome_options)
 song = []
 
 while(True):
@@ -22,7 +20,6 @@ while(True):
         lenght = driver.execute_script("return document.getElementById('movie_player').getDuration()")
         t = time()
         RPC.update(large_image = 'youtube', large_text = 'Youtube', details = song_name, start = t, end = t + lenght)
-        #sleep(int(str(lenght).split('.')[0]))
 
         print('Current status: ' + song_name)
 
