@@ -2,7 +2,6 @@ from time import time, sleep
 from selenium import webdriver
 from pypresence import Presence
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 client_id = ''  
 RPC = Presence(client_id, pipe=0)
